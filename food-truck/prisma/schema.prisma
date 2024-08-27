@@ -1,0 +1,44 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+model MobileFoodFacilityPermit {
+  id                      Int       @id @default(autoincrement())
+  locationid              Int
+  Applicant               String
+  FacilityType            String
+  cnn                     Int
+  LocationDescription     String
+  Address                 String
+  blocklot                String
+  block                   String
+  lot                     String
+  permit                  String
+  Status                  String
+  FoodItems               String
+  X                       String
+  Y                       String
+  Latitude                Float
+  Longitude               Float
+  Schedule                String?
+  dayshours               String?
+  NOISent                 String?
+  Approved                String?
+  Received                String?
+  PriorPermit             Int
+  ExpirationDate          String
+  Location                String
+  FirePreventionDistricts Int?
+  PoliceDistricts         Int?
+  SupervisorDistricts     Int?
+  ZipCodes                Int?
+  NeighborhoodsOld        Int?
+}
