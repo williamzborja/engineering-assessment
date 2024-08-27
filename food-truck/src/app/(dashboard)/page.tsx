@@ -1,11 +1,16 @@
-import { Suspense } from 'react';
+
 import FoodTrackTable from './food-track-table';
+import prisma from '@/lib/db';
 
-type Props = { searchParams: { q?: string, page?: number } };
 
-export default async function Page({ searchParams }: Props) {
-  const query = searchParams.q?.trim().toLowerCase() || '';
-  const page = Number(searchParams.page) || 0;
+export default async function Page({
+  children
+}: {
+  children: ReactNode;
+}) {
+  const foodTrucks = await prisma.mobileFoodFacilityPermit.count();
+
+  console.log(foodTrucks);
   return (
     <div>
       <div className='flex justify-between my-4 '>
