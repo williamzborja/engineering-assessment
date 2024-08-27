@@ -1,3 +1,20 @@
+# Solution
+
+I was creating a frontend and backend using NextJS 14, React, Tailwind and shadcn/ui components.
+
+
+I take the csv info and I load that into SQLite local db I was adding this DB in the prisma/dev.db that is only for 
+make easier run the project for the evaluation purpose thats not a PROD good practice.
+
+
+## How Run.
+```bash
+cd food-truck
+npm install
+npm run build
+npm run start
+```
+
 # Engineering Challenge
 
 We strive to be a practical and pragmatic team. That extends to the way that we work with you to understand if this team is a great fit for you. We want you to come away with a great understanding of the kind of things that we actually do day to day and what it is like to work in our teams.
