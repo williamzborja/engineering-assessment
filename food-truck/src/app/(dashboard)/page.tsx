@@ -3,7 +3,6 @@ import FoodTrackTable from './food-track-table';
 import prisma from '@/lib/db';
 
 
-
 export default async function Page({
   children
 }: {
