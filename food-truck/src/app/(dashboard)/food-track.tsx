@@ -8,19 +8,24 @@ import {
     DropdownMenuTrigger
 } from '@/components/ui/dropdown-menu';
 import { TableCell, TableRow } from '@/components/ui/table';
+import { MobileFoodFacilityPermit } from '@prisma/client';
 import { MoreHorizontal } from 'lucide-react';
 
-export default function FoodTrack() {
+interface Props {
+    foodTruck: Partial<MobileFoodFacilityPermit>;
+}
+
+export default function FoodTrack({ foodTruck }: Props) {
     return (
-        <TableRow>            
-            <TableCell className="font-medium">Name</TableCell>
+        <TableRow>
+            <TableCell className="font-medium">{foodTruck.Applicant}</TableCell>
             <TableCell>
                 <Badge variant="outline" className="capitalize">
-                    status
+                    {foodTruck.Status}
                 </Badge>
             </TableCell>
-            <TableCell className="hidden md:table-cell">Type</TableCell>
-            <TableCell className="hidden md:table-cell">Permit</TableCell>
+            <TableCell className="hidden md:table-cell">{foodTruck.FacilityType}</TableCell>
+            <TableCell className="hidden md:table-cell">{foodTruck.permit}</TableCell>
             <TableCell>
                 <DropdownMenu>
                     <DropdownMenuTrigger asChild>

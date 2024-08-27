@@ -1,13 +1,27 @@
 
 import { Button } from "@/components/ui/button";
-import { Card, CardHeader, CardTitle, CardDescription, CardContent, CardFooter } from "@/components/ui/card";
-import { TableHeader, TableRow, TableHead, TableBody, Table } from "@/components/ui/table";
+import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
+import { Table, TableBody, TableHead, TableHeader, TableRow } from "@/components/ui/table";
+
+import { nextPage } from "@/lib/actions";
 import { ChevronLeft, ChevronRight } from "lucide-react";
+import { redirect } from "next/navigation";
+import { getFoodTrucks } from "../lib/service";
 import FoodTrack from "./food-track";
 
-export default function FoodTrackTable() {
+type Props = { query: string, page: number };
+
+export default async function FoodTrackTable({ query, page }: Props) {
+    const pageItems = 7;
+    let skip = 0;
+    if (page > 1) {
+        skip = pageItems * (page - 1);
+    }
+
+    const take = pageItems;
+    const [foodTrucks, totalFoodTrucks] = await getFoodTrucks(query, take, skip);
     return (
-        <Card>
+        <Card className="bg-white">
             <CardHeader>
                 <CardTitle>Food Trucks</CardTitle>
                 <CardDescription className=" text-gray-500">
@@ -29,7 +43,11 @@ export default function FoodTrackTable() {
                         </TableRow>
                     </TableHeader>
                     <TableBody>
-                        <FoodTrack />
+                        {
+                            foodTrucks.map((foodTruck) => {
+                                return <FoodTrack key={foodTruck.id} foodTruck={foodTruck} />;
+                            })
+                        }
                     </TableBody>
                 </Table>
             </CardContent>
@@ -38,11 +56,17 @@ export default function FoodTrackTable() {
                     <div className="text-xs text-muted-foreground">
                         Showing{' '}
                         <strong>
+                            {pageItems * page}
                         </strong>{' '}
-                        of <strong>0</strong> food trucks
+                        of <strong>{totalFoodTrucks}</strong> food trucks
                     </div>
                     <div className="flex">
                         <Button
+                            formAction={async () => {
+                                'use server'
+                                if (page === 1) return;
+                                redirect(`/?q=${query}&page=${page - 1}`)
+                            }}
                             variant="ghost"
                             size="sm"
                             type="submit"
@@ -51,6 +75,7 @@ export default function FoodTrackTable() {
                             Prev
                         </Button>
                         <Button
+                            formAction={nextPage.bind(null, query, page, totalFoodTrucks)}
                             variant="ghost"
                             size="sm"
                             type="submit"
