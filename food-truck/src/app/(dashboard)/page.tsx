@@ -4,7 +4,7 @@ import FoodTrackTable from './food-track-table';
 
 type Props = {
   searchParams: {
-    query?: string;
+    q?: string;
     page?: number;
   };
 };
