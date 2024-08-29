@@ -1,7 +1,11 @@
 # Solution - Food Truck Permit Finder
 ![alt text](image.png)
 
+[vercel deploy](https://engineering-assessment-alpha.vercel.app)
+
 This project involves creating a website and a backend API using NextJS Server Actions. The goal is to provide a modern user interface and a robust API to manage mobile food facility permits.
+
+
 
 
 ## Tools
@@ -70,7 +74,7 @@ To seed the database with data from the CSV file, follow these steps:
 
 3. **Run the seed script:**:
 ```bash
-    npx ts-node seed.ts
+    npx tsx prisma/seed.ts
 ```
 
 
