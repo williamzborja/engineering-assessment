@@ -1,6 +1,7 @@
 -- CreateTable
 CREATE TABLE "MobileFoodFacilityPermit" (
-    "locationid" INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
+    "id" SERIAL NOT NULL,
+    "locationid" INTEGER NOT NULL,
     "Applicant" TEXT NOT NULL,
     "FacilityType" TEXT NOT NULL,
     "cnn" INTEGER NOT NULL,
@@ -12,21 +13,23 @@ CREATE TABLE "MobileFoodFacilityPermit" (
     "permit" TEXT NOT NULL,
     "Status" TEXT NOT NULL,
     "FoodItems" TEXT NOT NULL,
-    "X" REAL NOT NULL,
-    "Y" REAL NOT NULL,
-    "Latitude" REAL NOT NULL,
-    "Longitude" REAL NOT NULL,
+    "X" TEXT NOT NULL,
+    "Y" TEXT NOT NULL,
+    "Latitude" DOUBLE PRECISION NOT NULL,
+    "Longitude" DOUBLE PRECISION NOT NULL,
     "Schedule" TEXT,
     "dayshours" TEXT,
     "NOISent" TEXT,
-    "Approved" DATETIME NOT NULL,
+    "Approved" TEXT,
     "Received" TEXT,
     "PriorPermit" INTEGER NOT NULL,
-    "ExpirationDate" DATETIME NOT NULL,
+    "ExpirationDate" TEXT NOT NULL,
     "Location" TEXT NOT NULL,
-    "FirePreventionDistricts" INTEGER NOT NULL,
-    "PoliceDistricts" INTEGER NOT NULL,
-    "SupervisorDistricts" INTEGER NOT NULL,
-    "ZipCodes" INTEGER NOT NULL,
-    "NeighborhoodsOld" INTEGER NOT NULL
+    "FirePreventionDistricts" INTEGER,
+    "PoliceDistricts" INTEGER,
+    "SupervisorDistricts" INTEGER,
+    "ZipCodes" INTEGER,
+    "NeighborhoodsOld" INTEGER,
+
+    CONSTRAINT "MobileFoodFacilityPermit_pkey" PRIMARY KEY ("id")
 );

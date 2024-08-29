@@ -1,8 +1,7 @@
 import fs from 'fs';
 import csv from 'csv-parser';
-import { PrismaClient } from '@prisma/client';
+import prisma from '@/lib/db';
 
-const prisma = new PrismaClient();
 
 async function main() {
   const results: any[] = [];
