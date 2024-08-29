@@ -54,7 +54,7 @@ export default async function FoodTrackTable({ query, page }: Props) {
                     <div className="text-xs text-muted-foreground">
                         Showing{' '}
                         <strong>
-                            {pageItems * (page - 1) + 1} 
+                            {pageItems * (page - 1) + 1}
                         </strong>{' '}
                         of <strong>{totalFoodTrucks}</strong> food trucks
                     </div>
