@@ -2,10 +2,8 @@
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
 import { Table, TableBody, TableHead, TableHeader, TableRow } from "@/components/ui/table";
-
-import { nextPage } from "@/lib/actions";
+import { nextPage, prevPage } from "@/lib/actions";
 import { ChevronLeft, ChevronRight } from "lucide-react";
-import { redirect } from "next/navigation";
 import { getFoodTrucks } from "../lib/service";
 import FoodTrack from "./food-track";
 
@@ -56,20 +54,17 @@ export default async function FoodTrackTable({ query, page }: Props) {
                     <div className="text-xs text-muted-foreground">
                         Showing{' '}
                         <strong>
-                            {pageItems * page}
+                            {pageItems * (page - 1) + 1} 
                         </strong>{' '}
                         of <strong>{totalFoodTrucks}</strong> food trucks
                     </div>
                     <div className="flex">
                         <Button
-                            formAction={async () => {
-                                'use server'
-                                if (page === 1) return;
-                                redirect(`/?q=${query}&page=${page - 1}`)
-                            }}
+                            formAction={prevPage.bind(null, query, page, totalFoodTrucks)}
                             variant="ghost"
                             size="sm"
                             type="submit"
+                            disabled={page <= 1}
                         >
                             <ChevronLeft className="mr-2 h-4 w-4" />
                             Prev
@@ -79,6 +74,7 @@ export default async function FoodTrackTable({ query, page }: Props) {
                             variant="ghost"
                             size="sm"
                             type="submit"
+                            disabled={page * pageItems >= totalFoodTrucks}
                         >
                             Next
                             <ChevronRight className="ml-2 h-4 w-4" />
