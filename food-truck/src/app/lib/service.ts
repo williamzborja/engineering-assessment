@@ -2,6 +2,7 @@ import prisma from "@/lib/db";
 import { Prisma } from "@prisma/client";
 
 export async function getFoodTrucks(query: string, take: number, skip: number = 0) {
+    query = query.trim().toLowerCase();
 
     const query_db: Prisma.MobileFoodFacilityPermitFindManyArgs = {
         take,
@@ -17,22 +18,26 @@ export async function getFoodTrucks(query: string, take: number, skip: number = 
             OR: [
                 {
                     Applicant: {
-                        contains: query
+                        contains: query,
+                        mode: 'insensitive'
                     }
                 },
                 {
                     FacilityType: {
-                        startsWith: query
+                        startsWith: query,
+                        mode: 'insensitive'
                     }
                 },
                 {
                     permit: {
-                        contains: query
+                        contains: query,
+                        mode: 'insensitive'
                     }
                 },
                 {
                     Status: {
-                        contains: query
+                        contains: query,
+                        mode: 'insensitive'
                     }
                 }
             ]
