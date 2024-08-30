@@ -13,7 +13,7 @@ export default function Layout({ children }: Props) {
                     width={50}
                     height={50}
                 />
-                <h1 className="text-4xl font-bold">Food Truck Finder</h1>
+                <h1 className="text-4xl font-bold">Finder</h1>
                 <SearchInput />
             </header>
 
